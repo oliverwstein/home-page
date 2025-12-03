@@ -66,31 +66,46 @@ body {
 
 .outer-region {
     fill: transparent; /* Transparent outer region */
-    stroke: #D4AF37; /* Thin gold line */
-    stroke-width: 0.5;
+    stroke: #F0D050; /* Bright yellow gold line */
+    stroke-width: 1.0;
 }
 
 .middle-region {
     fill: #1A1A1A; /* Black middle region */
-    stroke: #D4AF37; /* Thin gold line */
-    stroke-width: 0.5;
+    stroke: #F0D050; /* Bright yellow gold line */
+    stroke-width: 1.0;
+}
+
+/* Claude hexagon gets Anthropic orange middle band */
+.hexagon[data-site="claude"] .middle-region {
+    fill: #D97757; /* Anthropic orange */
+}
+
+/* Twitter hexagon gets Twitter blue middle band */
+.hexagon[data-site="twitter"] .middle-region {
+    fill: #1DA1F2; /* Twitter blue */
+}
+
+/* Gmail hexagon gets Google red middle band */
+.hexagon[data-site="gmail"] .middle-region {
+    fill: #EA4335; /* Google red */
 }
 
 .inner-region {
-    fill: #2A2A2A; /* Dark center for favicon */
-    stroke: #D4AF37; /* Thin gold line */
-    stroke-width: 0.5;
+    fill: #FFFFFF; /* White center for favicon */
+    stroke: #F0D050; /* Bright yellow gold line */
+    stroke-width: 1.0;
     transition: fill 0.2s ease;
 }
 
 .hexagon:hover .inner-region {
-    fill: #3A3A3A; /* Slightly lighter on hover */
+    fill: #F5F5F5; /* Slightly darker white on hover */
 }
 
 .hexagon:hover .outer-region,
 .hexagon:hover .middle-region,
 .hexagon:hover .inner-region {
-    stroke: #E5C158; /* Brighter gold on hover */
+    stroke: #FFE066; /* Brighter yellow gold on hover */
 }
 
 /* Favicon Styling */

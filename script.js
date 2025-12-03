@@ -1,10 +1,10 @@
 // Hexagon grid configuration
 // Each hex has axial coordinates (q, r) for positioning on a hex grid
 const hexagonData = [
-    { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', domain: 'claude.ai', alt: 'Claude' },
-    { q: 1, r: 0, url: 'https://wikipedia.org', domain: 'wikipedia.org', alt: 'Wikipedia' },
-    { q: -1, r: 1, url: 'https://twitter.com', domain: 'twitter.com', alt: 'Twitter' },
-    { q: -1, r: 2, url: 'https://mail.google.com', altUrl: 'https://drive.google.com', domain: 'mail.google.com', alt: 'Gmail' }
+    { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude_logo.svg', alt: 'Claude' },
+    { q: 1, r: 0, url: 'https://wikipedia.org', logo: 'logos/wikipedia_logo.svg', alt: 'Wikipedia' },
+    { q: -1, r: 1, url: 'https://twitter.com', logo: 'logos/twitter_logo.svg', alt: 'Twitter' },
+    { q: -1, r: 2, url: 'https://mail.google.com', altUrl: 'https://drive.google.com', logo: 'logos/gmail_logo.svg', alt: 'Gmail' }
 ];
 
 // Hex grid parameters - calculated from CSS
@@ -158,7 +158,7 @@ function showGridOverlay() {
                     circle.setAttribute('cx', pos.x);
                     circle.setAttribute('cy', pos.y);
                     circle.setAttribute('r', 3);
-                    circle.setAttribute('fill', '#D4AF37');
+                    circle.setAttribute('fill', '#F0D050');
                     svg.appendChild(circle);
                 }
             }
@@ -228,7 +228,7 @@ function updateTargetHighlight(q, r) {
     const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
     polygon.setAttribute('points', hexPoints(1.05));
     polygon.setAttribute('fill', 'none');
-    polygon.setAttribute('stroke', '#E5C158');
+    polygon.setAttribute('stroke', '#FFE066');
     polygon.setAttribute('stroke-width', '2');
     polygon.setAttribute('opacity', '0.8');
 
@@ -373,10 +373,10 @@ function createKamonSVG() {
         <svg viewBox="0 0 100 100" class="hexagon-shape">
             <!-- Outermost border (1.0) with outer colored region -->
             <polygon points="${hexPoints(1.0)}" class="outer-region" />
-            <!-- Second border (0.96) with middle colored region -->
-            <polygon points="${hexPoints(0.96)}" class="middle-region" />
-            <!-- Third border (0.9) with dark center for favicon -->
-            <polygon points="${hexPoints(0.9)}" class="inner-region" />
+            <!-- Second border (0.95) with middle colored region -->
+            <polygon points="${hexPoints(0.95)}" class="middle-region" />
+            <!-- Third border (0.8) with dark center for favicon -->
+            <polygon points="${hexPoints(0.8)}" class="inner-region" />
         </svg>
     `;
 }
@@ -388,6 +388,7 @@ function createHexagon(data) {
     hexDiv.setAttribute('data-url', data.url);
     hexDiv.setAttribute('data-q', data.q);
     hexDiv.setAttribute('data-r', data.r);
+    hexDiv.setAttribute('data-site', data.alt.toLowerCase());
     if (data.altUrl) {
         hexDiv.setAttribute('data-alt-url', data.altUrl);
     }
@@ -398,11 +399,9 @@ function createHexagon(data) {
     hexDiv.style.left = `${pos.x - kamonSize / 2}px`;
     hexDiv.style.top = `${pos.y - kamonSize / 2}px`;
 
-    const faviconSize = Math.floor(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--favicon-size')));
-
     hexDiv.innerHTML = `
         ${createKamonSVG()}
-        <img src="https://www.google.com/s2/favicons?domain=${data.domain}&sz=${faviconSize}" alt="${data.alt}" class="favicon">
+        <img src="${data.logo}" alt="${data.alt}" class="favicon">
     `;
 
     return hexDiv;
