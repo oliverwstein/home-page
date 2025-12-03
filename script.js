@@ -373,10 +373,10 @@ function createKamonSVG() {
         <svg viewBox="0 0 100 100" class="hexagon-shape">
             <!-- Outermost border (1.0) with outer colored region -->
             <polygon points="${hexPoints(1.0)}" class="outer-region" />
-            <!-- Second border (0.95) with middle colored region -->
-            <polygon points="${hexPoints(0.95)}" class="middle-region" />
-            <!-- Third border (0.8) with dark center for favicon -->
-            <polygon points="${hexPoints(0.8)}" class="inner-region" />
+            <!-- Second border (0.94) with middle colored region -->
+            <polygon points="${hexPoints(0.94)}" class="middle-region" />
+            <!-- Third border (0.76) with dark center for favicon -->
+            <polygon points="${hexPoints(0.76)}" class="inner-region" />
         </svg>
     `;
 }
