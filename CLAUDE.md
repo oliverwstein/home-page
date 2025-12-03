@@ -1,58 +1,67 @@
 # Kamon Start Page
 
-## Project Overview
+Beautiful browser start page with hexagonal icons (kamon) inspired by Japanese family crests and kumiko geometric patterns.
 
-A minimal, aesthetically-focused browser start page featuring hexagonal navigation icons (kamon) inspired by Japanese family crests, with traditional kumiko geometric backgrounds.
+**Tech**: Pure HTML/CSS/vanilla JS - no frameworks
 
-**Purpose**: Replace Chrome's default new tab page with a beautiful, functional custom start page.
+## Current Implementation
 
-**Tech Stack**: Pure HTML/CSS/vanilla JavaScript (no frameworks)
+Working features:
+- 8 hexagonal kamon tiles (Claude, Github, Wikipedia, Twitter, Gmail, Gemini, Drive, Youtube)
+- Hexagonal grid with axial coordinates for positioning
+- Drag-and-drop rearrangement with grid snapping and position swapping
+- Triple-border kamon design with colored regions (outer/middle/inner)
+- Site logos displayed as SVG favicons in center
+- Grid overlay visualization during drag
+- Click-to-navigate (only if not dragged)
 
-## Project Structure
+## Design Philosophy
 
-```
-/
-├── index.html          # Main page structure
-├── style.css           # Styling, kumiko patterns, hexagon layout
-├── script.js           # Click handlers for navigation
-└── CLAUDE.md           # This file
-```
+**Japanese aesthetic principles:**
+- **Ma (間)**: Negative space and breathing room between elements
+- **Restraint**: Rich patterns without overwhelming - kumiko provides texture, not clutter
+- **Layered depth**: Multiple thin borders creating subtle dimensionality
+- **Geometric harmony**: Hexagonal tiling creates natural, pleasing arrangements
 
-## Design Goals
+**Kamon structure** (from outer to inner):
+1. Outer colored region (largest hexagon)
+2. Thin gold border
+3. Middle colored region
+4. Thin gold border  
+5. Inner dark region (favicon container)
 
-1. **Minimal MVP first**: 6 hexagonal icons on the left side with icons
-2. **Progressive enhancement**: Add kumiko backgrounds later
-3. **Performance**: Lightweight, fast loading, no dependencies
+**Color palette**: Earth tones, muted jewel tones, gold accents. Each site gets distinct colors in CSS via `data-site` attribute.
 
-## Initial Implementation Requirements
+## Implementation Notes
 
-### Phase 1: Hexagons + icons (Current)
-- 6 hexagonal shapes positioned on left side of viewport
-- Each hexagon contains a favicon for: Claude, Gemini, Wikipedia, Twitter, Gmail, Drive
-- SVG hexagons for crisp rendering at any scale
-- Simple click handlers to navigate to each site
+**Hexagonal grid math:**
+- Uses axial coordinates (q, r) for hex positioning
+- Converts to pixel coords: `x = WIDTH * (q + r/2)`, `y = HEIGHT * 3/4 * r`
+- Grid snapping uses cube coordinate rounding for accuracy
+- Edge validation prevents tiles too close to viewport bounds
 
-### Future Phases (Not Yet)
-- Kumiko geometric background patterns
-- Golden border glow on hover
-- Time-of-day background variations
+**SVG structure:**
+- Three nested hexagon polygons at scales 1.0, 0.94, 0.76
+- Creates visible borders where polygons don't overlap
+- ViewBox 100x100 with center at (50, 50), base radius 43
 
-## Navigation Targets
+**Drag behavior:**
+- Shows grid overlay (gold dots at valid positions) during drag
+- Yellow hex outline highlights target drop position
+- Swaps positions if dropping on occupied cell
+- Snaps back to original position if dropped in invalid area
 
-Primary (click):
-- Claude: https://claude.ai
-- Wikipedia: https://wikipedia.org
-- Twitter: https://twitter.com
-- Gmail: https://mail.google.com
-- AI Studio: https://aistudio.google.com
-- Google Drive: https://drive.google.com
+## Adding New Sites
 
-## Technical Notes
+1. Add entry to `hexagonData` array in script.js with q/r coordinates and logo path
+2. Add site-specific colors in style.css under `.hexagon[data-site="sitename"]`
+3. Add logo SVG to `logos/` directory
+4. Update preconnect/DNS prefetch hints in index.html
 
-- Use CSS Grid or Flexbox for hexagon positioning
-- SVG paths for hexagon shapes (6-sided polygon)
-- Keep all styling inline in single HTML file initially for easy browser bookmark/home page setup
+## Next Phase Ideas
 
-## How to Test
-
-Open `index.html` in browser. Hexagons should be visible on left side with recognizable icons, clicking should navigate to target sites.
+- Kumiko pattern backgrounds (asanoha, seigaiha, hemp leaf)
+- Hover glow effects on borders (golden, inspired by Inuyasha title cards)
+- Shift-click alternate destinations (already partially implemented via `altUrl`)
+- Time-of-day aesthetic variations (dawn/day/dusk/night color shifts)
+- Persistent layout (save drag positions to localStorage)
