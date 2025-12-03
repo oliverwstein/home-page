@@ -67,6 +67,7 @@ body::after {
     height: var(--kamon-size);
     cursor: grab;
     transition: left 0.2s ease, top 0.2s ease, transform 0.2s ease;
+    filter: drop-shadow(3px 3px 4px rgba(60, 50, 40, 0.4));
 }
 
 .hexagon:hover {
