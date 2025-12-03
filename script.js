@@ -1,12 +1,15 @@
 // Hexagon grid configuration
 // Each hex has axial coordinates (q, r) for positioning on a hex grid
 const hexagonData = [
-    { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude_logo.svg', alt: 'Claude' },
-    { q: 0, r: 1, url: 'https://aistudio.google.com', altUrl: 'https://claude.ai', logo: 'logos/gemini_logo.svg', alt: 'Gemini' },
-    { q: 1, r: 1, url: 'https://wikipedia.org', logo: 'logos/wikipedia_logo.svg', alt: 'Wikipedia' },
-    { q: -1, r: 2, url: 'https://twitter.com', logo: 'logos/twitter_logo.svg', alt: 'Twitter' },
-    { q: -1, r: 3, url: 'https://mail.google.com', logo: 'logos/gmail_logo.svg', alt: 'Gmail' },
-    { q: 0, r: 3, url: 'https://drive.google.com', logo: 'logos/google_drive_logo.svg', alt: 'Drive' }
+    { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude.svg', alt: 'Claude' },
+    { q: 0, r: 1, url: 'https://github.com', altUrl: 'https://github.com', logo: 'logos/github.svg', alt: 'Github' },
+    { q: 1, r: 1, url: 'https://wikipedia.org', logo: 'logos/wikipedia.svg', alt: 'Wikipedia' },
+    { q: -1, r: 2, url: 'https://twitter.com', logo: 'logos/twitter.svg', alt: 'Twitter' },
+    { q: -1, r: 3, url: 'https://mail.google.com', logo: 'logos/gmail.svg', alt: 'Gmail' },
+    { q: -2, r: 4, url: 'https://aistudio.google.com', altUrl: 'https://claude.ai', logo: 'logos/gemini.svg', alt: 'Gemini' },
+    { q: 0, r: 3, url: 'https://drive.google.com', logo: 'logos/drive.svg', alt: 'Drive' },
+    { q: 0, r: 4, url: 'https://youtube.com', logo: 'logos/youtube.svg', alt: 'Youtube' }
+
 ];
 
 // Hex grid parameters - calculated from CSS
@@ -14,7 +17,7 @@ const hexagonData = [
 let HEX_SIZE, HEX_WIDTH, HEX_HEIGHT;
 
 // Grid offset to shift all hexagons (adjust to position grid on page)
-const GRID_OFFSET = { x: 175, y: 125 };
+const GRID_OFFSET = { x: 100, y: 200 };
 
 // Grid occupancy tracking - maps "q,r" -> hexagon element
 const gridOccupancy = new Map();

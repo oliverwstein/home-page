@@ -81,6 +81,11 @@ body {
     fill: #D97757; /* Anthropic orange */
 }
 
+/* Github hexagon gets Github green 5 */
+.hexagon[data-site="github"] .middle-region {
+    fill: #104C35; /* Github green 5 */
+}
+
 /* Gemini hexagon gets Google blue middle band */
 .hexagon[data-site="gemini"] .middle-region {
     fill: #4285F4; /* Google blue */
@@ -99,6 +104,11 @@ body {
 /* Drive hexagon gets Google green middle band */
 .hexagon[data-site="drive"] .middle-region {
     fill: #0F9D58; /* Google green */
+}
+
+/* Youtube hexagon gets Youtube Red */
+.hexagon[data-site="youtube"] .middle-region {
+    fill: #FF0000; /* Youtube Red */
 }
 
 .inner-region {
