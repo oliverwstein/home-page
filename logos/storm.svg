@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Cloud -->
+  <path d="M 25,35 Q 25,25 35,25 Q 35,15 45,15 Q 55,15 55,25 Q 65,25 65,35 Q 65,45 55,45 L 35,45 Q 25,45 25,35 Z" fill="#1A1A1A"/>
+  <!-- Lightning bolt -->
+  <path d="M 50,45 L 42,60 L 48,60 L 40,80 L 55,58 L 48,58 Z" fill="#1A1A1A"/>
+</svg>

@@ -142,6 +142,11 @@ body::after {
     fill: #FF0000; /* Youtube Red */
 }
 
+/* Weather hexagon gets sky blue middle band */
+.hexagon[data-site="weather"] .middle-region {
+    fill: #7BA8C0; /* Medium sky blue */
+}
+
 .inner-region {
     fill: #FFFFFF; /* White center for favicon */
     stroke: #F0D050; /* Bright yellow gold line */

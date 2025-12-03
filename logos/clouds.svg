@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Cloud shape made of overlapping circles -->
+  <path d="M 25,55 Q 25,45 35,45 Q 35,35 45,35 Q 55,35 55,45 Q 65,45 65,55 Q 65,65 55,65 L 35,65 Q 25,65 25,55 Z" fill="#1A1A1A"/>
+  <path d="M 35,65 Q 35,70 40,70 L 60,70 Q 65,70 65,65" fill="#1A1A1A"/>
+</svg>

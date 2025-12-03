@@ -3,6 +3,7 @@
 const hexagonData = [
     { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude.svg', alt: 'Claude' },
     { q: 0, r: 1, url: 'https://github.com', altUrl: 'https://github.com', logo: 'logos/github.svg', alt: 'Github' },
+    { q: 1, r: 0, type: 'weather', url: 'https://weather.com', logo: 'logos/clouds.svg', alt: 'Weather' },
     { q: 1, r: 1, url: 'https://wikipedia.org', logo: 'logos/wikipedia.svg', alt: 'Wikipedia' },
     { q: -1, r: 2, url: 'https://twitter.com', logo: 'logos/twitter.svg', alt: 'Twitter' },
     { q: -1, r: 3, url: 'https://mail.google.com', logo: 'logos/gmail.svg', alt: 'Gmail' },
@@ -15,6 +16,95 @@ const hexagonData = [
 // Hex grid parameters - calculated from CSS
 // These will be initialized after DOM loads
 let HEX_SIZE, HEX_WIDTH, HEX_HEIGHT;
+
+// Weather configuration
+const WEATHER_LAT = 42.3876;
+const WEATHER_LON = -71.0995;
+const WEATHER_CACHE_KEY = 'weather_data';
+const WEATHER_CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+const USER_AGENT = '(KamonStartPage, contact@example.com)'; // Update with your email
+
+// Map weather conditions to icons
+function getWeatherIcon(shortForecast) {
+    const condition = shortForecast.toLowerCase();
+
+    if (condition.includes('sunny') || condition.includes('clear')) {
+        return 'logos/sun.svg';
+    } else if (condition.includes('rain') || condition.includes('showers')) {
+        return 'logos/rain.svg';
+    } else if (condition.includes('thunder') || condition.includes('storm')) {
+        return 'logos/storm.svg';
+    } else if (condition.includes('snow') || condition.includes('flurries')) {
+        return 'logos/snow.svg';
+    } else if (condition.includes('fog') || condition.includes('mist')) {
+        return 'logos/fog.svg';
+    } else if (condition.includes('cloud') || condition.includes('overcast')) {
+        return 'logos/clouds.svg';
+    }
+
+    return 'logos/clouds.svg'; // Default fallback
+}
+
+// Fetch current weather from weather.gov
+async function fetchWeather() {
+    // Check cache first
+    const cached = localStorage.getItem(WEATHER_CACHE_KEY);
+    if (cached) {
+        const data = JSON.parse(cached);
+        if (Date.now() - data.timestamp < WEATHER_CACHE_DURATION) {
+            return data.weather;
+        }
+    }
+
+    try {
+        // Step 1: Get forecast URLs for location
+        const pointsUrl = `https://api.weather.gov/points/${WEATHER_LAT},${WEATHER_LON}`;
+        const pointsResponse = await fetch(pointsUrl, {
+            headers: { 'User-Agent': USER_AGENT }
+        });
+        const pointsData = await pointsResponse.json();
+
+        // Step 2: Get current forecast
+        const forecastUrl = pointsData.properties.forecast;
+        const forecastResponse = await fetch(forecastUrl, {
+            headers: { 'User-Agent': USER_AGENT }
+        });
+        const forecastData = await forecastResponse.json();
+
+        // Get current period (first entry)
+        const current = forecastData.properties.periods[0];
+
+        const weather = {
+            condition: current.shortForecast,
+            icon: getWeatherIcon(current.shortForecast),
+            temp: current.temperature,
+            tempUnit: current.temperatureUnit
+        };
+
+        // Cache result
+        localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify({
+            weather,
+            timestamp: Date.now()
+        }));
+
+        return weather;
+    } catch (error) {
+        console.error('Weather fetch failed:', error);
+
+        // Return cached data if available, even if stale
+        const cached = localStorage.getItem(WEATHER_CACHE_KEY);
+        if (cached) {
+            return JSON.parse(cached).weather;
+        }
+
+        // Ultimate fallback
+        return {
+            condition: 'Unknown',
+            icon: 'logos/clouds.svg',
+            temp: null
+        };
+    }
+}
 
 // Grid offset to shift all hexagons (adjust to position grid on page)
 const GRID_OFFSET = { x: 100, y: 200 };
@@ -451,4 +541,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize grid occupancy
     updateGridOccupancy();
+
+    // Initialize weather hex if it exists
+    const weatherHex = container.querySelector('.hexagon[data-site="weather"]');
+    if (weatherHex) {
+        fetchWeather().then(weather => {
+            const img = weatherHex.querySelector('.favicon');
+            img.src = weather.icon;
+            // Store weather data as data attributes for potential tooltip use
+            if (weather.temp !== null) {
+                weatherHex.setAttribute('data-temp', `${weather.temp}°${weather.tempUnit}`);
+                weatherHex.setAttribute('data-condition', weather.condition);
+            }
+        }).catch(err => {
+            console.error('Failed to fetch weather:', err);
+            // Keep default icon
+        });
+    }
 });

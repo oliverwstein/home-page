@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Horizontal wavy fog lines -->
+  <path d="M 15,30 Q 25,25 35,30 T 55,30 T 75,30 T 85,30" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 20,45 Q 30,40 40,45 T 60,45 T 80,45" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 15,60 Q 25,55 35,60 T 55,60 T 75,60 T 85,60" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 25,75 Q 35,70 45,75 T 65,75 T 85,75" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+</svg>
