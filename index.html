@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamon Start</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- DNS Prefetch & Preconnect for faster loading -->
+    <link rel="dns-prefetch" href="https://claude.ai">
+    <link rel="dns-prefetch" href="https://aistudio.google.com">
+    <link rel="dns-prefetch" href="https://wikipedia.org">
+    <link rel="dns-prefetch" href="https://twitter.com">
+    <link rel="dns-prefetch" href="https://mail.google.com">
+    <link rel="dns-prefetch" href="https://drive.google.com">
+
+    <link rel="preconnect" href="https://claude.ai" crossorigin>
+    <link rel="preconnect" href="https://aistudio.google.com" crossorigin>
+    <link rel="preconnect" href="https://wikipedia.org" crossorigin>
+    <link rel="preconnect" href="https://twitter.com" crossorigin>
+    <link rel="preconnect" href="https://mail.google.com" crossorigin>
+    <link rel="preconnect" href="https://drive.google.com" crossorigin>
+
+    <!-- Speculation Rules API for prerendering (Chrome/Edge) -->
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "source": "list",
+          "urls": [
+            "https://claude.ai",
+            "https://aistudio.google.com",
+            "https://wikipedia.org",
+            "https://twitter.com",
+            "https://mail.google.com",
+            "https://drive.google.com"
+          ],
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Hexagons generated dynamically by script.js -->

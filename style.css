@@ -81,6 +81,11 @@ body {
     fill: #D97757; /* Anthropic orange */
 }
 
+/* Gemini hexagon gets Google blue middle band */
+.hexagon[data-site="gemini"] .middle-region {
+    fill: #4285F4; /* Google blue */
+}
+
 /* Twitter hexagon gets Twitter blue middle band */
 .hexagon[data-site="twitter"] .middle-region {
     fill: #1DA1F2; /* Twitter blue */
@@ -89,6 +94,11 @@ body {
 /* Gmail hexagon gets Google red middle band */
 .hexagon[data-site="gmail"] .middle-region {
     fill: #EA4335; /* Google red */
+}
+
+/* Drive hexagon gets Google green middle band */
+.hexagon[data-site="drive"] .middle-region {
+    fill: #0F9D58; /* Google green */
 }
 
 .inner-region {

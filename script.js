@@ -2,9 +2,11 @@
 // Each hex has axial coordinates (q, r) for positioning on a hex grid
 const hexagonData = [
     { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude_logo.svg', alt: 'Claude' },
-    { q: 1, r: 0, url: 'https://wikipedia.org', logo: 'logos/wikipedia_logo.svg', alt: 'Wikipedia' },
-    { q: -1, r: 1, url: 'https://twitter.com', logo: 'logos/twitter_logo.svg', alt: 'Twitter' },
-    { q: -1, r: 2, url: 'https://mail.google.com', altUrl: 'https://drive.google.com', logo: 'logos/gmail_logo.svg', alt: 'Gmail' }
+    { q: 0, r: 1, url: 'https://aistudio.google.com', altUrl: 'https://claude.ai', logo: 'logos/gemini_logo.svg', alt: 'Gemini' },
+    { q: 1, r: 1, url: 'https://wikipedia.org', logo: 'logos/wikipedia_logo.svg', alt: 'Wikipedia' },
+    { q: -1, r: 2, url: 'https://twitter.com', logo: 'logos/twitter_logo.svg', alt: 'Twitter' },
+    { q: -1, r: 3, url: 'https://mail.google.com', logo: 'logos/gmail_logo.svg', alt: 'Gmail' },
+    { q: 0, r: 3, url: 'https://drive.google.com', logo: 'logos/google_drive_logo.svg', alt: 'Drive' }
 ];
 
 // Hex grid parameters - calculated from CSS
