@@ -62,6 +62,5 @@ Working features:
 
 - Kumiko pattern backgrounds (asanoha, seigaiha, hemp leaf)
 - Hover glow effects on borders (golden, inspired by Inuyasha title cards)
-- Shift-click alternate destinations (already partially implemented via `altUrl`)
 - Time-of-day aesthetic variations (dawn/day/dusk/night color shifts)
 - Persistent layout (save drag positions to localStorage)
