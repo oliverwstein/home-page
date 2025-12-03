@@ -1,5 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Cloud shape made of overlapping circles -->
-  <path d="M 25,55 Q 25,45 35,45 Q 35,35 45,35 Q 55,35 55,45 Q 65,45 65,55 Q 65,65 55,65 L 35,65 Q 25,65 25,55 Z" fill="#1A1A1A"/>
-  <path d="M 35,65 Q 35,70 40,70 L 60,70 Q 65,70 65,65" fill="#1A1A1A"/>
-</svg>
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" d="M598.4 831.872H328.192a256 256 0 01-34.496-510.528A352 352 0 11598.4 831.872zm-271.36-64h272.256a288 288 0 10-248.512-417.664L335.04 381.44l-34.816 3.584a192 192 0 0026.88 382.848z"/></svg>
