@@ -9,7 +9,7 @@ const hexagonData = [
     { q: -2, r: 4, url: 'https://aistudio.google.com', altUrl: 'https://claude.ai', logo: 'logos/gemini.svg', alt: 'Gemini' },
     { q: 0, r: 3, url: 'https://drive.google.com', logo: 'logos/drive.svg', alt: 'Drive' },
     { q: 0, r: 4, url: 'https://youtube.com', logo: 'logos/youtube.svg', alt: 'Youtube' },
-    { q: 1, r: 4, type: 'weather', url: 'https://weather.com', logo: 'logos/clouds.svg', alt: 'Weather' },
+    { q: 1, r: 4, type: 'weather', url: 'https://weather.com', logo: 'weather/clouds.svg', alt: 'Weather' },
 
 ];
 
@@ -28,21 +28,24 @@ const USER_AGENT = '(KamonStartPage, contact@example.com)'; // Update with your 
 function getWeatherIcon(shortForecast) {
     const condition = shortForecast.toLowerCase();
 
-    if (condition.includes('sunny') || condition.includes('clear')) {
-        return 'logos/sun.svg';
-    } else if (condition.includes('rain') || condition.includes('showers')) {
-        return 'logos/rain.svg';
+    if (condition.includes('rain') || condition.includes('showers')) {
+        return 'weather/rain.svg';
     } else if (condition.includes('thunder') || condition.includes('storm')) {
-        return 'logos/storm.svg';
+        return 'weather/storm.svg';
     } else if (condition.includes('snow') || condition.includes('flurries')) {
-        return 'logos/snow.svg';
+        return 'weather/snow.svg';
     } else if (condition.includes('fog') || condition.includes('mist')) {
-        return 'logos/fog.svg';
+        return 'weather/fog.svg';
+    } else if (condition.includes('partly') || condition.includes('mostly')) {
+        // Partly Cloudy, Partly Sunny, Mostly Sunny, Mostly Cloudy
+        return 'weather/partly-sunny.svg';
+    } else if (condition.includes('sunny') || condition.includes('clear')) {
+        return 'weather/sun.svg';
     } else if (condition.includes('cloud') || condition.includes('overcast')) {
-        return 'logos/clouds.svg';
+        return 'weather/clouds.svg';
     }
 
-    return 'logos/clouds.svg'; // Default fallback
+    return 'weather/clouds.svg'; // Default fallback
 }
 
 // Fetch current weather from weather.gov
@@ -59,20 +62,25 @@ async function fetchWeather() {
     try {
         // Step 1: Get forecast URLs for location
         const pointsUrl = `https://api.weather.gov/points/${WEATHER_LAT},${WEATHER_LON}`;
+        console.log('Fetching weather.gov points:', pointsUrl);
         const pointsResponse = await fetch(pointsUrl, {
             headers: { 'User-Agent': USER_AGENT }
         });
         const pointsData = await pointsResponse.json();
+        console.log('Points data:', pointsData);
 
         // Step 2: Get current forecast
         const forecastUrl = pointsData.properties.forecast;
+        console.log('Fetching forecast from:', forecastUrl);
         const forecastResponse = await fetch(forecastUrl, {
             headers: { 'User-Agent': USER_AGENT }
         });
         const forecastData = await forecastResponse.json();
+        console.log('Forecast data:', forecastData);
 
         // Get current period (first entry)
         const current = forecastData.properties.periods[0];
+        console.log('Current weather period:', current);
 
         const weather = {
             condition: current.shortForecast,
@@ -80,6 +88,8 @@ async function fetchWeather() {
             temp: current.temperature,
             tempUnit: current.temperatureUnit
         };
+
+        console.log('Weather result:', weather);
 
         // Cache result
         localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify({
@@ -100,7 +110,7 @@ async function fetchWeather() {
         // Ultimate fallback
         return {
             condition: 'Unknown',
-            icon: 'logos/clouds.svg',
+            icon: 'weather/clouds.svg',
             temp: null
         };
     }
