@@ -3,13 +3,13 @@
 const hexagonData = [
     { q: 0, r: 0, url: 'https://claude.ai', altUrl: 'https://aistudio.google.com', logo: 'logos/claude.svg', alt: 'Claude' },
     { q: 0, r: 1, url: 'https://github.com', altUrl: 'https://github.com', logo: 'logos/github.svg', alt: 'Github' },
-    { q: 1, r: 0, type: 'weather', url: 'https://weather.com', logo: 'logos/clouds.svg', alt: 'Weather' },
     { q: 1, r: 1, url: 'https://wikipedia.org', logo: 'logos/wikipedia.svg', alt: 'Wikipedia' },
     { q: -1, r: 2, url: 'https://twitter.com', logo: 'logos/twitter.svg', alt: 'Twitter' },
     { q: -1, r: 3, url: 'https://mail.google.com', logo: 'logos/gmail.svg', alt: 'Gmail' },
     { q: -2, r: 4, url: 'https://aistudio.google.com', altUrl: 'https://claude.ai', logo: 'logos/gemini.svg', alt: 'Gemini' },
     { q: 0, r: 3, url: 'https://drive.google.com', logo: 'logos/drive.svg', alt: 'Drive' },
-    { q: 0, r: 4, url: 'https://youtube.com', logo: 'logos/youtube.svg', alt: 'Youtube' }
+    { q: 0, r: 4, url: 'https://youtube.com', logo: 'logos/youtube.svg', alt: 'Youtube' },
+    { q: 1, r: 4, type: 'weather', url: 'https://weather.com', logo: 'logos/clouds.svg', alt: 'Weather' },
 
 ];
 
