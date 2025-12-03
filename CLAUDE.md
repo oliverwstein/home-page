@@ -20,23 +20,21 @@ A minimal, aesthetically-focused browser start page featuring hexagonal navigati
 
 ## Design Goals
 
-1. **Minimal MVP first**: 4 hexagonal icons on the left side with favicons
-2. **Progressive enhancement**: Add kumiko backgrounds, hover effects, shift-click alternates later
+1. **Minimal MVP first**: 6 hexagonal icons on the left side with icons
+2. **Progressive enhancement**: Add kumiko backgrounds later
 3. **Performance**: Lightweight, fast loading, no dependencies
 
 ## Initial Implementation Requirements
 
-### Phase 1: Hexagons + Favicons (Current)
-- 4 hexagonal shapes positioned on left side of viewport
-- Each hexagon contains a favicon for: Claude, Wikipedia, Twitter, Gmail
+### Phase 1: Hexagons + icons (Current)
+- 6 hexagonal shapes positioned on left side of viewport
+- Each hexagon contains a favicon for: Claude, Gemini, Wikipedia, Twitter, Gmail, Drive
 - SVG hexagons for crisp rendering at any scale
 - Simple click handlers to navigate to each site
 
 ### Future Phases (Not Yet)
 - Kumiko geometric background patterns
-- Golden border glow on hover (like Inuyasha title cards)
-- Shift-click alternates (Claude→AI Studio, Gmail→Drive)
-- CSS filters to unify favicon aesthetics
+- Golden border glow on hover
 - Time-of-day background variations
 
 ## Navigation Targets
@@ -46,8 +44,6 @@ Primary (click):
 - Wikipedia: https://wikipedia.org
 - Twitter: https://twitter.com
 - Gmail: https://mail.google.com
-
-Secondary (shift+click, future):
 - AI Studio: https://aistudio.google.com
 - Google Drive: https://drive.google.com
 
@@ -55,9 +51,8 @@ Secondary (shift+click, future):
 
 - Use CSS Grid or Flexbox for hexagon positioning
 - SVG paths for hexagon shapes (6-sided polygon)
-- Favicons can be loaded via `https://www.google.com/s2/favicons?domain=example.com` or directly from each site
 - Keep all styling inline in single HTML file initially for easy browser bookmark/home page setup
 
 ## How to Test
 
-Open `index.html` in browser. Hexagons should be visible on left side with recognizable favicons, clicking should navigate to target sites.
+Open `index.html` in browser. Hexagons should be visible on left side with recognizable icons, clicking should navigate to target sites.
